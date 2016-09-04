@@ -1,11 +1,13 @@
 import axios from 'axios';
 import jsonp from 'jsonp';
-import { INITIAL_FETCH } from '../constants/index';
+import {
+    INITIAL_FETCH,
+    POST_DISPLAYED
+ } from '../constants/index';
 
 const url = 'https://platform.postano.com/apiproxy/jsonp/accounts/4299/projects/82658/products/13196/posts';
 
 export function initialFetch() {
-
     const result = new Promise(function(resolve, request) {
         jsonp(url, null, function (err, data) {
             if (err) {
@@ -15,9 +17,15 @@ export function initialFetch() {
             }
         });
     });
-    
     return {
         type: INITIAL_FETCH,
         payload: result
+    }
+}
+
+export function postDisplayed(post) {
+    return {
+        type: POST_DISPLAYED,
+        payload: post
     }
 }

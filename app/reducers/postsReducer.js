@@ -7,9 +7,7 @@ const initialState = {};
 export default function postsReducer(state = initialState, action) {
     switch(action.type) {
         case INITIAL_FETCH:
-            return Object.assign({}, state, {
-                posts: action.payload
-            });
+            return Object.assign({}, state, action.payload);
         default:
             return state;
     }

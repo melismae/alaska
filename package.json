@@ -1,7 +1,7 @@
 {
   "name": "flyAK",
   "version": "1.0.0",
-  "description": "React/Redux universal app",
+  "description": "React/Redux client-side app",
   "repository": {
     "type": "git",
     "url": ""

@@ -1,1 +1,2 @@
 export const INITIAL_FETCH = 'INITIAL_FETCH';
+export const POST_DISPLAYED = 'POST_DISPLAYED';
