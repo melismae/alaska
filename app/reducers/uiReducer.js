@@ -3,7 +3,7 @@ import {
 } from '../constants/index';
 
 const initialState = {
-    postDisplayed: 0
+    postDisplayed: null
 }
 
 export default function uiReducer(state = initialState, action) {

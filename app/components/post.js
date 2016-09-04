@@ -8,24 +8,24 @@ export default class Post extends Component {
     }
 
     displayed(posts) {
-        let f = (x) => {
-            return function() {
-                console.log(x)
-            };
-        };
-        for (let i = 0; i < Object.keys(posts).length; i++) {
-            setInterval(f(posts[i]), 1000 * i);
-        };
+        let postsLen = Object.keys(posts).length;
+        for (let i = 0; i < postsLen; i++) {
+            setTimeout((x) => {
+                this.props.dispatch(postDisplayed(i));
+            }, 7000*i);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("this.props", this.props);
-        console.log("nextProps", nextProps);
+        if (Object.keys(nextProps.posts).length > 0 && this.props.ui.postDisplayed === null && nextProps.ui.postDisplayed === null) {
+            this.displayed(nextProps.posts);
+        }
     }
 
     render() {
         let posts = this.props.posts;
-        let permalink = Object.keys(posts).length > 0 ? posts[0].permalink : "";
+        let postDisplayed = this.props.ui.postDisplayed;
+        let permalink = Object.keys(posts).length > 0 && posts[postDisplayed] ? posts[postDisplayed].permalink : "";
         return (
             <div>
                 {permalink}
