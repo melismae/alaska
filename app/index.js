@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { render } from 'react-dom';
 import ReduxPromise from 'redux-promise';
+import './styles/index.scss';
 
 import * as reducers from './reducers/index';
 import App from './components/index';

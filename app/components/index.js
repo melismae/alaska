@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 class App extends Component {
     componentWillMount() {
-        this.props.dispatch(initialFetch());
+        // this.props.dispatch(initialFetch());
     }
 
     render() {

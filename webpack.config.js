@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const LIFECYCLE_EVENT = process.env.npm_lifecycle_event;
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var plugins = [
@@ -21,7 +22,8 @@ var common = {
         app: path.join(__dirname, 'app')
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.scss'],
+        modulesDirectories: ['node_modules', 'app']
     },
     output: {
         path: path.join(__dirname, 'build'),
@@ -33,9 +35,18 @@ var common = {
                 test:    /\.jsx?$/,
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'babel']
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader?outputStyle=expanded')
             }
         ]
-    }
+    },
+    postcss: [
+        autoprefixer({
+          browsers: ['last 2 versions']
+        })
+    ]
 };
 
 var config;
@@ -44,7 +55,7 @@ if (LIFECYCLE_EVENT === 'start' || !LIFECYCLE_EVENT) {
     config = merge(
         common, {
         plugins: plugins,
-        devtool: 'source-map',
+        devtool: 'cheap-eval-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'build'),
             progress: true,
