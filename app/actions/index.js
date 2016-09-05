@@ -2,8 +2,11 @@ import axios from 'axios';
 import jsonp from 'jsonp';
 import {
     INITIAL_FETCH,
-    POST_DISPLAYED
- } from '../constants/index';
+    INSTA_VINE_POSTS,
+    TWITTER_POSTS,
+    MAIN_DISPLAYED,
+    SECONDARY_DISPLAYED
+} from '../constants/index';
 
 const url = 'https://platform.postano.com/apiproxy/jsonp/accounts/4299/projects/82658/products/13196/posts';
 
@@ -23,9 +26,30 @@ export function initialFetch() {
     }
 }
 
-export function postDisplayed(post) {
+export function instaVinePosts(posts) {
     return {
-        type: POST_DISPLAYED,
+        type: INSTA_VINE_POSTS,
+        payload: posts
+    }
+}
+
+export function twitterPosts(posts) {
+    return {
+        type: TWITTER_POSTS,
+        payload: posts
+    }
+}
+
+export function mainDisplayed(post) {
+    return {
+        type: MAIN_DISPLAYED,
+        payload: post
+    }
+}
+
+export function secondaryDisplayed(post) {
+    return {
+        type: SECONDARY_DISPLAYED,
         payload: post
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { initialFetch } from '../actions/index.js';
-import Post from './post';
+import Container from './container';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,7 +19,7 @@ class App extends Component {
         let { posts, ui, dispatch } = this.props;
         return (
             <div>
-                <Post posts={posts} dispatch={dispatch} ui={ui}/>
+                <Container posts={posts} dispatch={dispatch} ui={ui}/>
             </div>
         );
     }
