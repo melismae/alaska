@@ -38,7 +38,21 @@ var common = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader?outputStyle=expanded')
+                loader: "style!css!sass!postcss-loader"
+            },
+            // Inline base64 URLs for <=8k images, direct URLs for the rest
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+                loader: 'url-loader?limit=8192'
+            },
+            // for icomoon icon loading
+            {
+                test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+                loader: "url-loader?limit=10000&mimetype=application/font-woff"
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+                loader: "file-loader"
             }
         ]
     },

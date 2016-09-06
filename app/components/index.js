@@ -18,7 +18,7 @@ class App extends Component {
     render() {
         let { posts, ui, dispatch } = this.props;
         return (
-            <div>
+            <div className="container">
                 <Container posts={posts} dispatch={dispatch} ui={ui}/>
             </div>
         );

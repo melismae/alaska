@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PostBorder from './post-border';
 import MainPost from './main-post';
-import SecondaryPost from './secondary-post';
+import Sidebar from './sidebar';
+import Branding from './branding';
 import { instaVinePosts, twitterPosts, mainDisplayed, secondaryDisplayed } from '../actions/index.js';
 
 export default class Container extends Component {
@@ -64,11 +65,10 @@ export default class Container extends Component {
         let mainDisplay = this.props.ui.mainDisplayed;
         let permalink = Object.keys(posts).length > 0 && posts[mainDisplay] ? posts[mainDisplay].permalink : "";
         return (
-            <div>
+            <div className="post-container">
+                <Sidebar />
                 <MainPost />
-                <SecondaryPost />
-                {permalink}
-                Hi
+                <Branding />
             </div>
         );
     }

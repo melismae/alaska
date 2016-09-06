@@ -1,3 +1,123 @@
+@import "normalise";
+@import "colors";
+@import "fonts";
+
+html {
+    font-size: 100%;
+}
+
 body {
-    background-color: red;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    .container {
+        background-color: $darkblue;
+        font-family: $karla;
+        .post-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            display: flex;
+            padding:0 20px;
+            .main-post, .sidebar, .branding {
+                margin-top: 30px;
+                margin-bottom: 50px;
+            }
+            .main-post {
+                background-color: $lightgrey;
+                font-size: 0;
+                position:relative;
+                width: 540px;
+                height: 540px;
+                img {
+                    max-width: 540px;
+                    max-height: 540px;
+                }
+                .insta-handle {
+                    font-size: 12px;
+                    position: absolute;
+                    width: calc(100% - 40px);
+                    background-color: $lightblue;
+                    height: 50px;
+                    display: block;
+                    z-index: 1000;
+                    bottom: 0;
+                    margin: 0;
+                    padding: 10px 20px;
+                    display: flex;
+                    img {
+                        border-radius: 50%;
+                        height: 50px;
+                        width: 50px;
+                        border: 1px solid $lightgrey;
+                    }
+                }
+
+            }
+            .secondary-post {
+                max-width: 230px;
+                width: 230px;
+                max-height: 230px;
+                height: 230px;
+                padding: 20px;
+                &.top {
+                    background-color: $lightblue;
+                    color: $lightgrey;
+                    .tweet {
+                        text-align: left;
+                        span {
+                            color: $lightgreen;
+                        }
+                    }
+
+                    .handle, .name {
+                        text-align:right;
+                    }
+                }
+                &.bottom {
+                    background-color: $lightgreen;
+                    color: $darkgrey;
+                    text-align:center;
+                    .tweet span {
+                        color: $lightblue;
+                    }
+                }
+                .tweet {
+                    font-size: 24px;
+                    font-weight: bold;
+                    line-height: 1.2;
+                    margin-bottom: 20px;
+                }
+                .handle, .name {
+                    font-size: 18px;
+
+                }
+            }
+            .branding {
+                width: 270px;
+                padding: 15px;
+                img {
+                    width: 200px;
+                }
+                div.ifly {
+                    margin-top: 50px;
+                    padding: 20px 0;
+                    border-top: 1px solid #fff;
+                    border-bottom: 1px solid #fff;
+                    span.hashtag {
+                        font-size: 45px;
+                        color: $lightblue;
+                    }
+                    span.because {
+                        font-size: 40px;
+                        color: #fff;
+                    }
+                }
+                div.share {
+                    margin-top: 50px;
+                    font-size: 41px;
+                    color: $lightgrey;
+                }
+            }
+        }
+    }
 }
