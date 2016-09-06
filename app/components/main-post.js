@@ -9,11 +9,11 @@ export default class MainPost extends Component {
                 <img src={PostImage} />
                 <div className="insta-handle">
                     <img src={PostAvatar} />
-                    <div>
+                    <div className="name">
                         <h2>Melissa Smith</h2>
                         <h3>@melismae</h3>
                     </div>
-                    <span className="icon-twitter"></span>
+                    <div className="icon"><span className="icon-instagram"></span></div>
                 </div>
             </div>
         );

@@ -9,41 +9,87 @@ html {
 body {
     line-height: 1;
     letter-spacing: -0.02em;
+    font-family: $karla;
+    font-size: 1em;
+    color: $darkgrey;
+
+    h1, h2, h3, h4, h5, h6, p {
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 1;
+    }
     .container {
-        background-color: $darkblue;
-        font-family: $karla;
+        background-color: $lightgrey;
+        .background {
+            position:relative;
+            top: -300px;
+        }
         .post-container {
             max-width: 1120px;
-            margin: 0 auto;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
             box-sizing: border-box;
             display: flex;
             padding:0 20px;
+            margin-top: 30px;
             .main-post, .sidebar, .branding {
-                margin-top: 30px;
                 margin-bottom: 50px;
+                border-top: 10px solid $white;
+                border-bottom: 10px solid $white;
+                height: 540px;
             }
             .main-post {
                 background-color: $lightgrey;
-                font-size: 0;
+                font-size: 0px;
                 position:relative;
                 width: 540px;
-                height: 540px;
                 img {
                     max-width: 540px;
                     max-height: 540px;
                 }
                 .insta-handle {
-                    font-size: 12px;
                     position: absolute;
-                    width: calc(100% - 40px);
-                    background-color: $lightblue;
-                    height: 50px;
+                    width: calc(60% - 40px);
+                    background-color: rgba(21,123,182, 0.8);
+                    height: 48px;
                     display: block;
                     z-index: 1000;
-                    bottom: 0;
+                    bottom: 45px;
                     margin: 0;
                     padding: 10px 20px;
                     display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $lightgrey;
+                    right:0;
+                    div {
+                        margin: 0 auto;
+                        &.name {
+                            margin-left: 16px;
+                        }
+                        &.icon {
+                            margin-right: 10px;
+                        }
+                        h2, h3 {
+                            font-weight: normal;
+                            font-size: 20px;
+
+                        }
+                        h2 {
+                            text-transform: uppercase;
+                            font-size: 24px;
+                        }
+                        span {
+                            font-size: 36px;
+                        }
+                        span:before {
+                            color: $lightgrey;
+                        }
+                    }
                     img {
                         border-radius: 50%;
                         height: 50px;
@@ -54,14 +100,32 @@ body {
 
             }
             .secondary-post {
-                max-width: 230px;
-                width: 230px;
-                max-height: 230px;
-                height: 230px;
+                width: 210px;
+                height: 225px;
                 padding: 20px;
+                border-left: 10px solid $white;
+                border-right: 10px solid $white;
+                position: relative;
+                .corner {
+                    position: absolute;
+                    width: 0px;
+                    height: 0px;
+                    border-top: 40px solid $lightgrey;
+                    border-right: 40px solid transparent;
+                    top: 0;
+                    left: 0;
+                    span {
+                        position: absolute;
+                        margin-top: -37px;
+                        margin-left: 5px;
+                        font-size: 18px;
+                        color: $paleblue;
+                    }
+                }
                 &.top {
                     background-color: $lightblue;
                     color: $lightgrey;
+                    border-bottom: 5px solid $white;
                     .tweet {
                         text-align: left;
                         span {
@@ -77,29 +141,32 @@ body {
                     background-color: $lightgreen;
                     color: $darkgrey;
                     text-align:center;
+                    border-top: 5px solid $white;
                     .tweet span {
                         color: $lightblue;
                     }
                 }
                 .tweet {
-                    font-size: 24px;
+                    font-size: 22px;
                     font-weight: bold;
-                    line-height: 1.2;
+                    line-height: 1;
                     margin-bottom: 20px;
                 }
                 .handle, .name {
                     font-size: 18px;
-
                 }
             }
             .branding {
-                width: 270px;
-                padding: 15px;
+                width: 240px;
+                padding: 0 10px;
+                border-right: 10px solid $white;
+                background-color: rgba(1, 66, 106, 0.9);
                 img {
-                    width: 200px;
+                    margin-top: 50px;
+                    width: 180px;
                 }
                 div.ifly {
-                    margin-top: 50px;
+                    margin-top: 100px;
                     padding: 20px 0;
                     border-top: 1px solid #fff;
                     border-bottom: 1px solid #fff;

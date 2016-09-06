@@ -10,6 +10,9 @@ export default class SecondaryPost extends Component {
         let customClass = 'secondary-post ' + this.props.customClass;
         return (
             <div className={customClass}>
+                <div className="corner">
+                    <span className="icon-twitter"></span>
+                </div>
                 <Tweet tweet={tweet} />
                 <div className="name">
                     {name}
