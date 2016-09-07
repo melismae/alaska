@@ -6,7 +6,7 @@ import {
     TWITTER_POSTS,
     MAIN_DISPLAYED,
     SECONDARY_DISPLAYED,
-    AVATAR_STATUS
+    AVATAR_VISIBILITY
 } from '../constants/index';
 
 const url = 'https://platform.postano.com/apiproxy/jsonp/accounts/4299/projects/82658/products/13196/posts';
@@ -55,9 +55,9 @@ export function secondaryDisplayed(post) {
     }
 }
 
-export function avatarStatus(status) {
+export function avatarVisibility(status) {
     return {
-        type: AVATAR_STATUS,
+        type: AVATAR_VISIBILITY,
         payload: status
     }
 }

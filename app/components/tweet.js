@@ -6,7 +6,7 @@ export default class Tweet extends Component {
 
     // tweet() takes raw tweet, strips html, wraps @alaskaair & #iflyalaska in spans
 
-    tweet(tweetContent) {
+    text(tweetContent) {
         let replacedText;
 
         //strip out any html from incoming tweet
@@ -30,11 +30,11 @@ export default class Tweet extends Component {
     }
 
     render() {
-        let { tweet } = this.props;
+        let { text } = this.props;
 
         return (
             <div className="tweet">
-                {this.tweet(tweet)}
+                {this.text(text)}
             </div>
         );
     }

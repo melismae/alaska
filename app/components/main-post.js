@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
 
 export default class MainPost extends Component {
-    avatarStatus(status) {
+
+    avatar(status) {
         this.props.avatarImageStatus(status);
+    }
+
+    video(url) {
+        return (
+            <video width="540" height="540" autoPlay src={url}>
+                <source src={url} type="video/mp4" />
+                    Your browser does not support the video tag.
+            </video>
+        );
+    }
+
+    avatarImage(avatar, visibility) {
+        return (
+            <div className={visibility}>
+                <img src={avatar} onError={this.avatar.bind(this, 'hidden')} onLoad={this.avatar.bind(this, 'shown')} />
+            </div>
+        );
     }
 
     render() {
         let post = this.props.postShown ? this.props.postShown : "";
-        let name, handle, iconClass, avatar, image;
+        let name, handle, iconClass, avatar, image, sourceType, sourceUrl;
         if (post) {
             name = post.user.full_name;
             handle = `@${post.user.screen_name}`;
-            iconClass = `icon-${post.source_type}`;
+            sourceType = post.source_type;
+            iconClass = `icon-${sourceType}`;
             avatar = post.user.icon;
-            image = post.images[0].url;
+            sourceUrl = sourceType === 'instagram' ? post.images[0].url : post.videos[0].url;
         }
-        let status = this.props.avatarStatus;
+        let visibility = this.props.avatarVisibility;
         return (
             <div className="main-post">
-                <img src={image} />
+                { sourceType === 'instagram' ? <img src={sourceUrl} /> : this.video(sourceUrl) }
                 <div className="insta-handle">
-                    { avatar !== null && status !== 'error' ? <img src={avatar} onError={this.avatarStatus.bind(this, 'error')} onLoad={this.avatarStatus.bind(this, 'loaded')}/> : "" }
+                    { avatar !== null ? this.avatarImage(avatar, visibility) : "" }
                     <div className="name">
                         <h2>{name}</h2>
                         <h3>{handle}</h3>

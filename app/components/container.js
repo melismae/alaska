@@ -3,7 +3,7 @@ import PostBorder from './post-border';
 import MainPost from './main-post';
 import Sidebar from './sidebar';
 import { Branding } from './branding';
-import { instaVinePosts, twitterPosts, mainDisplayed, secondaryDisplayed, avatarStatus } from '../actions/index.js';
+import { instaVinePosts, twitterPosts, mainDisplayed, secondaryDisplayed, avatarVisibility } from '../actions/index.js';
 
 export default class Container extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export default class Container extends Component {
         for (let i = 0; i < postsLen; i++) {
             setTimeout((x) => {
                 this.props.dispatch(mainDisplayed(postKey[i]));
-            }, 50000*i);
+            }, 8000*i);
         }
     }
 
@@ -30,7 +30,7 @@ export default class Container extends Component {
         for (let i = 0; i < postsLen; i++) {
             setTimeout((x) => {
                 this.props.dispatch(secondaryDisplayed([postKey[i], postKey[i+1]]));
-            }, 50000*i);
+            }, 7000*i);
         }
     }
 
@@ -50,8 +50,7 @@ export default class Container extends Component {
     }
 
     avatarImageStatus(status) {
-        console.log(this.props);
-        this.props.dispatch(avatarStatus(status));
+        this.props.dispatch(avatarVisibility(status));
     }
 
     componentWillReceiveProps(nextProps) {
@@ -69,11 +68,17 @@ export default class Container extends Component {
     render() {
         let { posts, ui } = this.props;
         let mainDisplay = ui.mainDisplayed;
+        let top = ui.secondaryDisplayed ? ui.secondaryDisplayed[0] : "";
+        let bottom = ui.secondaryDisplayed ? ui.secondaryDisplayed[1] : "";
+        let postObj = Object.keys(posts).length > 0;
         let postShown = Object.keys(posts).length > 0 && posts[mainDisplay] ? posts[mainDisplay] : "";
+        let topTweet = Object.keys(posts).length > 0 && posts[top] ? posts[top] : "";
+        let bottomTweet = Object.keys(posts).length > 0 && posts[bottom] ? posts[bottom] : "";
+
         return (
             <div className="post-container">
-                <Sidebar />
-                <MainPost postShown={postShown} avatarImageStatus={this.avatarImageStatus} avatarStatus={ui.avatarStatus} />
+                <Sidebar topTweet={topTweet} bottomTweet={bottomTweet} />
+                <MainPost postShown={postShown} avatarImageStatus={this.avatarImageStatus} avatarVisibility={ui.avatarVisibility} />
                 <Branding />
             </div>
         );

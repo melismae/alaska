@@ -90,12 +90,21 @@ body {
                             color: $lightgrey;
                         }
                     }
-                    img {
-                        border-radius: 50%;
-                        height: 50px;
-                        width: 50px;
-                        border: 1px solid $lightgrey;
-                        background-color:$lightgrey;
+                    div {
+                        &.shown {
+                            display: block;
+                            margin: 0;
+                        }
+                        &.hidden {
+                            display:none;
+                        }
+                        img {
+                            border-radius: 50%;
+                            height: 50px;
+                            width: 50px;
+                            border: 1px solid $lightgrey;
+                            background-color:$lightgrey;
+                        }
                     }
                 }
             }
@@ -150,7 +159,7 @@ body {
                     }
                 }
                 .tweet {
-                    font-size: 22px;
+                    font-size: 20px;
                     font-weight: bold;
                     line-height: 1;
                     margin-bottom: 20px;

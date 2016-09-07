@@ -3,10 +3,11 @@ import SecondaryPost from './secondary-post';
 
 export default class Sidebar extends Component {
     render() {
+        let { topTweet, bottomTweet } = this.props;
         return (
             <div className="sidebar">
-                <SecondaryPost customClass="top" />
-                <SecondaryPost customClass="bottom" />
+                <SecondaryPost customClass="top" tweet={topTweet}  />
+                <SecondaryPost customClass="bottom" tweet={bottomTweet}  />
             </div>
         );
     }
