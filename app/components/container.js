@@ -17,21 +17,32 @@ export default class Container extends Component {
     mainDisplay(nextProps) {
         let postsLen = Object.keys(nextProps.ui.instaVinePosts).length;
         let postKey = nextProps.ui.instaVinePosts;
-        for (let i = 0; i < postsLen; i++) {
-            setTimeout((x) => {
-                this.props.dispatch(mainDisplayed(postKey[i]));
-            }, 8000*i);
-        }
+        let i = -1;
+        setInterval(() => {
+            i++;
+            if (i % postsLen === 0) {
+                i = 0;
+            }
+            this.props.dispatch(mainDisplayed(postKey[i]));
+        }, 8000);
     }
 
     secondaryDisplay(nextProps) {
         let postsLen = Object.keys(nextProps.ui.twitterPosts).length;
         let postKey = nextProps.ui.twitterPosts;
-        for (let i = 0; i < postsLen; i++) {
-            setTimeout((x) => {
-                this.props.dispatch(secondaryDisplayed([postKey[i], postKey[i+1]]));
-            }, 7000*i);
-        }
+        let i = -1;
+        setInterval(() => {
+            i++;
+            if (i % postsLen === 0) {
+                i = 0;
+            }
+            let postKeyTwo = i+1;
+            console.log(postKeyTwo, postsLen);
+            if (postKeyTwo == postsLen) {
+                postKeyTwo = 0;
+            }
+            this.props.dispatch(secondaryDisplayed([postKey[i], postKey[postKeyTwo]]));
+        }, 3000);
     }
 
     postSource(posts) {

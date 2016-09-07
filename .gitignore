@@ -2,3 +2,5 @@ node_modules
 *.log
 build/*.js
 build/*.css
+.DS_Store
+DS_Store
