@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const LIFECYCLE_EVENT = process.env.npm_lifecycle_event;
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var plugins = [
@@ -21,7 +22,8 @@ var common = {
         app: path.join(__dirname, 'app')
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.scss'],
+        modulesDirectories: ['node_modules', 'app']
     },
     output: {
         path: path.join(__dirname, 'build'),
@@ -33,9 +35,32 @@ var common = {
                 test:    /\.jsx?$/,
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'babel']
+            },
+            {
+                test: /\.scss$/,
+                loader: "style!css!sass!postcss-loader"
+            },
+            // Inline base64 URLs for <=8k images, direct URLs for the rest
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+                loader: 'url-loader?limit=8192'
+            },
+            // for icomoon icon loading
+            {
+                test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+                loader: "url-loader?limit=10000&mimetype=application/font-woff"
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+                loader: "file-loader"
             }
         ]
-    }
+    },
+    postcss: [
+        autoprefixer({
+          browsers: ['last 2 versions']
+        })
+    ]
 };
 
 var config;
@@ -44,7 +69,7 @@ if (LIFECYCLE_EVENT === 'start' || !LIFECYCLE_EVENT) {
     config = merge(
         common, {
         plugins: plugins,
-        devtool: 'source-map',
+        devtool: 'cheap-eval-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'build'),
             progress: true,

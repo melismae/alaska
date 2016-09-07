@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { initialFetch } from '../actions/index.js';
-import Card from './card';
+import Container from './container';
+import Background from './background';
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts
+        posts: state.posts,
+        ui: state.ui
     };
 };
 
@@ -15,11 +17,11 @@ class App extends Component {
     }
 
     render() {
-        let { posts, dispatch } = this.props;
-        console.log("posts", posts);
+        let { posts, ui, dispatch } = this.props;
         return (
-            <div>
-                <Card posts={posts} dispatch={dispatch} />
+            <div className="container">
+                <Background />
+                <Container posts={posts} dispatch={dispatch} ui={ui}/>
             </div>
         );
     }
