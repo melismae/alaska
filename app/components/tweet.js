@@ -1,40 +1,37 @@
 import React, { Component } from 'react';
-import reactStringReplace from 'react-string-replace';
-import striptags from 'striptags';
+import TweetText from './tweet-text';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class Tweet extends Component {
-
-    // tweet() takes raw tweet, strips html, wraps @alaskaair & #iflyalaska in spans
-
-    text(tweetContent) {
-        let replacedText;
-
-        //strip out any html from incoming tweet
-        replacedText = striptags(tweetContent);
-
-        // Match @-mentions
-        replacedText = reactStringReplace(replacedText, /@(alaskaair)/gi, (match, i) => (
-            <span key={match + i}>@{match}</span>
-        ));
-
-        // Match hashtags
-        replacedText = reactStringReplace(replacedText, /#(iflyalaska)/gi, (match, i) => (
-            <span key={match + i}>#{match}</span>
-        ));
-
-        return (
-            <div>
-                {replacedText}
-            </div>
-        );
-    }
-
     render() {
-        let { text } = this.props;
-
+        let { tweet, customClass } = this.props;
+        let name, handle, text;
+        if (tweet) {
+            name = tweet.user.full_name;
+            handle = `@${tweet.user.screen_name}`;
+            text = tweet.text;
+        }
+        customClass = 'secondary-post ' + customClass;
         return (
-            <div className="tweet">
-                {this.text(text)}
+            <div className={customClass}>
+                <div className="corner">
+                    <span className="icon-twitter"></span>
+                </div>
+                <ReactCSSTransitionGroup
+                    transitionName="tweet-ani"
+                    transitionEnterTimeout={300}
+                    transitionAppearTimeout={500}
+                    transitionLeaveTimeout={100}>
+                    <div className="tweet-name" key={name}>
+                        <TweetText text={text} />
+                        <div className="name">
+                            {name}
+                        </div>
+                        <div className="handle">
+                            {handle}
+                        </div>
+                    </div>
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

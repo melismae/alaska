@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PostBorder from './post-border';
 import MainPost from './main-post';
 import Sidebar from './sidebar';
 import { Branding } from './branding';
@@ -17,7 +16,8 @@ export default class Container extends Component {
     mainDisplay(nextProps) {
         let postsLen = Object.keys(nextProps.ui.instaVinePosts).length;
         let postKey = nextProps.ui.instaVinePosts;
-        let i = -1;
+        let i = 0;
+        this.props.dispatch(mainDisplayed(postKey[0]));
         setInterval(() => {
             i++;
             if (i % postsLen === 0) {
@@ -30,19 +30,20 @@ export default class Container extends Component {
     secondaryDisplay(nextProps) {
         let postsLen = Object.keys(nextProps.ui.twitterPosts).length;
         let postKey = nextProps.ui.twitterPosts;
-        let i = -1;
+        let i = 0;
+        this.props.dispatch(secondaryDisplayed([postKey[0], postKey[1]]));
+        // this sets up the timed redux state to keep track of what post is shown in the sidebar
         setInterval(() => {
             i++;
             if (i % postsLen === 0) {
                 i = 0;
             }
             let postKeyTwo = i+1;
-            console.log(postKeyTwo, postsLen);
             if (postKeyTwo == postsLen) {
                 postKeyTwo = 0;
             }
             this.props.dispatch(secondaryDisplayed([postKey[i], postKey[postKeyTwo]]));
-        }, 3000);
+        }, 6000);
     }
 
     postSource(posts) {
