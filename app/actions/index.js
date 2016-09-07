@@ -5,7 +5,8 @@ import {
     INSTA_VINE_POSTS,
     TWITTER_POSTS,
     MAIN_DISPLAYED,
-    SECONDARY_DISPLAYED
+    SECONDARY_DISPLAYED,
+    AVATAR_STATUS
 } from '../constants/index';
 
 const url = 'https://platform.postano.com/apiproxy/jsonp/accounts/4299/projects/82658/products/13196/posts';
@@ -51,5 +52,12 @@ export function secondaryDisplayed(post) {
     return {
         type: SECONDARY_DISPLAYED,
         payload: post
+    }
+}
+
+export function avatarStatus(status) {
+    return {
+        type: AVATAR_STATUS,
+        payload: status
     }
 }

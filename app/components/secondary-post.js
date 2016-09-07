@@ -13,12 +13,14 @@ export default class SecondaryPost extends Component {
                 <div className="corner">
                     <span className="icon-twitter"></span>
                 </div>
-                <Tweet tweet={tweet} />
-                <div className="name">
-                    {name}
-                </div>
-                <div className="handle">
-                    {handle}
+                <div className="tweet-name">
+                    <Tweet tweet={tweet} />
+                    <div className="name">
+                        {name}
+                    </div>
+                    <div className="handle">
+                        {handle}
+                    </div>
                 </div>
             </div>
         );

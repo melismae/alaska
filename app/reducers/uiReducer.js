@@ -2,14 +2,16 @@ import {
     INSTA_VINE_POSTS,
     TWITTER_POSTS,
     MAIN_DISPLAYED,
-    SECONDARY_DISPLAYED
+    SECONDARY_DISPLAYED,
+    AVATAR_STATUS
 } from '../constants/index';
 
 const initialState = {
     instaVinePosts: null,
     twitterPosts: null,
     mainDisplayed: null,
-    secondaryDisplayed: null
+    secondaryDisplayed: null,
+    avatarStatus: ""
 }
 
 export default function uiReducer(state = initialState, action) {
@@ -29,6 +31,10 @@ export default function uiReducer(state = initialState, action) {
         case SECONDARY_DISPLAYED:
             return Object.assign({}, state, {
                 secondaryDisplayed: action.payload
+            });
+        case AVATAR_STATUS:
+            return Object.assign({}, state, {
+                avatarStatus: action.payload
             });
         default:
             return state;

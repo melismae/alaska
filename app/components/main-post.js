@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import PostImage from '../assets/post-image.jpg';
-import PostAvatar from '../assets/insta-handle-sample.jpg';
 
 export default class MainPost extends Component {
+    avatarStatus(status) {
+        this.props.avatarImageStatus(status);
+    }
+
     render() {
+        let post = this.props.postShown ? this.props.postShown : "";
+        let name, handle, iconClass, avatar, image;
+        if (post) {
+            name = post.user.full_name;
+            handle = `@${post.user.screen_name}`;
+            iconClass = `icon-${post.source_type}`;
+            avatar = post.user.icon;
+            image = post.images[0].url;
+        }
+        let status = this.props.avatarStatus;
         return (
             <div className="main-post">
-                <img src={PostImage} />
+                <img src={image} />
                 <div className="insta-handle">
-                    <img src={PostAvatar} />
+                    { avatar !== null && status !== 'error' ? <img src={avatar} onError={this.avatarStatus.bind(this, 'error')} onLoad={this.avatarStatus.bind(this, 'loaded')}/> : "" }
                     <div className="name">
-                        <h2>Melissa Smith</h2>
-                        <h3>@melismae</h3>
+                        <h2>{name}</h2>
+                        <h3>{handle}</h3>
                     </div>
-                    <div className="icon"><span className="icon-instagram"></span></div>
+                    <div className="icon"><span className={iconClass}></span></div>
                 </div>
             </div>
         );
