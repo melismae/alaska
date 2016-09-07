@@ -11,7 +11,7 @@ export default class Tweet extends Component {
             handle = `@${tweet.user.screen_name}`;
             text = tweet.text;
         }
-        customClass = 'secondary-post ' + customClass;
+        customClass = 'sidebar-post ' + customClass;
         return (
             <div className={customClass}>
                 <div className="corner">

@@ -5,7 +5,7 @@ import {
     INSTA_VINE_POSTS,
     TWITTER_POSTS,
     MAIN_DISPLAYED,
-    SECONDARY_DISPLAYED,
+    SIDEBAR_DISPLAYED,
     AVATAR_VISIBILITY
 } from '../constants/index';
 
@@ -48,9 +48,9 @@ export function mainDisplayed(post) {
     }
 }
 
-export function secondaryDisplayed(post) {
+export function sidebarDisplayed(post) {
     return {
-        type: SECONDARY_DISPLAYED,
+        type: SIDEBAR_DISPLAYED,
         payload: post
     }
 }

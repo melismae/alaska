@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class MainPost extends Component {
-
+    /*
+        avatar()
+        called in avatarImage() below to set avatar div visibility in the store.
+        the dispatch function is called in the container component
+    */
     avatar(status) {
         this.props.avatarImageStatus(status);
     }
 
+    /*
+        video()
+        assembles the video element called in render()
+    */
     video(url) {
         return (
             <video width="540" height="540" autoPlay src={url} key={url}>
@@ -15,7 +23,11 @@ export default class MainPost extends Component {
             </video>
         );
     }
-
+    /*
+        avatarImage()
+        takes avatarUrl and visibility to show or hide the div with the avatar
+        it also called the avatar function above onLoad or onError to store the result in the store
+    */
     avatarImage(avatar, visibility) {
         return (
             <div className={visibility}>
@@ -23,7 +35,7 @@ export default class MainPost extends Component {
             </div>
         );
     }
-    
+
     render() {
         let post = this.props.postShown ? this.props.postShown : "";
         let name, handle, iconClass, avatar, image, sourceType, sourceUrl;

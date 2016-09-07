@@ -1,16 +1,14 @@
-# alaska
+# iflyalaska
+
+Repo for #IFlyAlaska Sprinklr challenge. Link is TBD, but for now, here's how to run.
 
 First, install the dependencies:
 
 `$ npm install`
 
-For JavaScript development, use the webpack dev server... it has hot reloading
+For JavaScript development, use the webpack dev server... it has hot reloading of JS & CSS
 
-`$ npm run start`
-
-To watch the CSS files, use the following command (styles do not hot reload):
-
-`$ npm run watch:css`
+`$ npm run dev`
 
 To build the app, use
 

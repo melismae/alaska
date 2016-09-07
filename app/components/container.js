@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import MainPost from './main-post';
 import Sidebar from './sidebar';
 import { Branding } from './branding';
-import { instaVinePosts, twitterPosts, mainDisplayed, secondaryDisplayed, avatarVisibility } from '../actions/index.js';
+import { instaVinePosts, twitterPosts, mainDisplayed, sidebarDisplayed, avatarVisibility } from '../actions/index.js';
 
 export default class Container extends Component {
     constructor(props) {
         super(props);
         this.mainDisplay = this.mainDisplay.bind(this);
-        this.secondaryDisplay = this.secondaryDisplay.bind(this);
+        this.sidebarDisplay = this.sidebarDisplay.bind(this);
         this.postSource = this.postSource.bind(this);
         this.avatarImageStatus = this.avatarImageStatus.bind(this);
     }
-
+    /*
+        mainDisplay()
+        called in componentWillReceiveProps
+        sets up the redux state to keep track of what main post is shown
+        the setInterval loops continuously after the first dispatch
+    */
     mainDisplay(nextProps) {
         let postsLen = Object.keys(nextProps.ui.instaVinePosts).length;
         let postKey = nextProps.ui.instaVinePosts;
@@ -27,12 +32,17 @@ export default class Container extends Component {
         }, 8000);
     }
 
-    secondaryDisplay(nextProps) {
+    /*
+        sidebarDisplay()
+        called in componentWillReceiveProps
+        sets up the redux state to keep track of what sidebar twitter posts are shown
+        the setInterval loops continuously after the first dispatch
+    */
+    sidebarDisplay(nextProps) {
         let postsLen = Object.keys(nextProps.ui.twitterPosts).length;
         let postKey = nextProps.ui.twitterPosts;
         let i = 0;
-        this.props.dispatch(secondaryDisplayed([postKey[0], postKey[1]]));
-        // this sets up the timed redux state to keep track of what post is shown in the sidebar
+        this.props.dispatch(sidebarDisplayed([postKey[0], postKey[1]]));
         setInterval(() => {
             i++;
             if (i % postsLen === 0) {
@@ -42,10 +52,16 @@ export default class Container extends Component {
             if (postKeyTwo == postsLen) {
                 postKeyTwo = 0;
             }
-            this.props.dispatch(secondaryDisplayed([postKey[i], postKey[postKeyTwo]]));
+            this.props.dispatch(sidebarDisplayed([postKey[i], postKey[postKeyTwo]]));
         }, 6000);
     }
 
+    /*
+        postSource()
+        called in componentWillReceiveProps
+        creates arrays of the keys that populate the Main Post (instaVinePosts) and Sidebar (twitter)
+        then dispatches actions to redux to keep these keys in the store
+    */
     postSource(posts) {
         let instaVineArr = [];
         let twitArr = [];
@@ -60,11 +76,15 @@ export default class Container extends Component {
         this.props.dispatch(instaVinePosts(instaVineArr));
         this.props.dispatch(twitterPosts(twitArr));
     }
-
+    /*
+        avatarImageStatus()
+        called in MainPost child component after the instagram avatar image either fails or loads
+        redux store keeps a value 'avatarVisibility' that corresponds to a CSS class to show/hide the avatar image div
+    */
     avatarImageStatus(status) {
         this.props.dispatch(avatarVisibility(status));
     }
-
+    
     componentWillReceiveProps(nextProps) {
         if (Object.keys(nextProps.posts).length > 0 && this.props.ui.instaVinePosts === null && nextProps.ui.instaVinePosts === null) {
             this.postSource(nextProps.posts);
@@ -73,15 +93,15 @@ export default class Container extends Component {
             this.mainDisplay(nextProps);
         }
         if(this.props.ui.twitterPosts === null && nextProps.ui.twitterPosts !== null) {
-            this.secondaryDisplay(nextProps);
+            this.sidebarDisplay(nextProps);
         }
     }
 
     render() {
         let { posts, ui } = this.props;
         let mainDisplay = ui.mainDisplayed;
-        let top = ui.secondaryDisplayed ? ui.secondaryDisplayed[0] : "";
-        let bottom = ui.secondaryDisplayed ? ui.secondaryDisplayed[1] : "";
+        let top = ui.sidebarDisplayed ? ui.sidebarDisplayed[0] : "";
+        let bottom = ui.sidebarDisplayed ? ui.sidebarDisplayed[1] : "";
         let postObj = Object.keys(posts).length > 0;
         let postShown = Object.keys(posts).length > 0 && posts[mainDisplay] ? posts[mainDisplay] : "";
         let topTweet = Object.keys(posts).length > 0 && posts[top] ? posts[top] : "";
