@@ -60,8 +60,8 @@ export default class MainPost extends Component {
                         <div className="insta-handle">
                             { avatar !== null ? this.avatarImage(avatar, visibility) : "" }
                             <div className="name">
-                                <h2>{name}</h2>
-                                <h3>{handle}</h3>
+                                <h3>{name}</h3>
+                                <h4>{handle}</h4>
                             </div>
                             <div className="icon"><span className={iconClass}></span></div>
                         </div>

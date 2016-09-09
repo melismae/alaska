@@ -12,6 +12,7 @@ export default class Container extends Component {
         this.postSource = this.postSource.bind(this);
         this.avatarImageStatus = this.avatarImageStatus.bind(this);
     }
+
     /*
         mainDisplay()
         called in componentWillReceiveProps
@@ -84,7 +85,7 @@ export default class Container extends Component {
     avatarImageStatus(status) {
         this.props.dispatch(avatarVisibility(status));
     }
-    
+
     componentWillReceiveProps(nextProps) {
         if (Object.keys(nextProps.posts).length > 0 && this.props.ui.instaVinePosts === null && nextProps.ui.instaVinePosts === null) {
             this.postSource(nextProps.posts);
