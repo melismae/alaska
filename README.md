@@ -1,6 +1,8 @@
 # iflyalaska
 
-Repo for #IFlyAlaska Sprinklr challenge. Link is TBD, but for now, here's how to run.
+Repo for #IFlyAlaska Sprinklr challenge - [can find online here](http://iflyalaskachallenge.com.s3-website-us-west-2.amazonaws.com/).
+
+How to run locally:
 
 First, install the dependencies:
 

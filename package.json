@@ -8,7 +8,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack -p",
+    "build-css": "node-sass --include-path scss ./app/styles/index.scss ./build/main.css",
     "dev": "npm run start",
     "start": "webpack-dev-server"
   },
@@ -53,6 +54,6 @@
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
-    "redux-promise": "^0.5.3",
+    "redux-promise": "^0.5.3"
   }
 }

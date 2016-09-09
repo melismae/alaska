@@ -12,8 +12,7 @@ const reducer = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 render(
-    <Provider store={createStoreWithMiddleware(reducer, compose(
-            window.devToolsExtension ? window.devToolsExtension() : f => f))}>
+    <Provider store={createStoreWithMiddleware(reducer)}>
         <App />
     </Provider>,
     document.getElementById('app')

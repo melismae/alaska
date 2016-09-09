@@ -1,5 +1,9 @@
 node_modules
 *.log
 build/*.js
+build/*.svg
+build/*.png
+build/*.ttf
+build/*.eot
 build/*.css
 .DS_Store
