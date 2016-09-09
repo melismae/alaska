@@ -1,4 +1,5 @@
 import {
+    FETCH_FAIL,
     INSTA_VINE_POSTS,
     TWITTER_POSTS,
     MAIN_DISPLAYED,
@@ -7,6 +8,7 @@ import {
 } from '../constants/index';
 
 const initialState = {
+    error: false,
     instaVinePosts: null,
     twitterPosts: null,
     mainDisplayed: null,
@@ -16,6 +18,10 @@ const initialState = {
 
 export default function uiReducer(state = initialState, action) {
     switch(action.type) {
+        case FETCH_FAIL:
+            return Object.assign({}, state, {
+                error: action.err
+            });
         case INSTA_VINE_POSTS:
             return Object.assign({}, state, {
                 instaVinePosts: action.payload

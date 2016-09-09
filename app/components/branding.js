@@ -5,12 +5,12 @@ export const Branding = () => {
     return (
         <div className="branding">
             <div className="ifly">
-                <span className="hashtag">#iFlyAlaska</span><br />
-                <span className="because">because&#8230;</span><br />
+                <h1>#iFlyAlaska</h1>
+                <h2>because&#8230;</h2>
             </div>
-            <div className="share">
+            <h2 className="share">
                 Share your journey.
-            </div>
+            </h2>
             <img src={AlaskaLogo} />
         </div>
     );

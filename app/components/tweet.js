@@ -24,12 +24,8 @@ export default class Tweet extends Component {
                     transitionLeaveTimeout={100}>
                     <div className="tweet-name" key={name}>
                         <TweetText text={text} />
-                        <div className="name">
-                            {name}
-                        </div>
-                        <div className="handle">
-                            {handle}
-                        </div>
+                        <h4>{name}</h4>
+                        <p>{handle}</p>
                     </div>
                 </ReactCSSTransitionGroup>
             </div>

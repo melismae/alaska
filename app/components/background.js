@@ -13,7 +13,7 @@ export default class Background extends Component {
                         <path clipPath="url(#SVGID_2_)" fill="#B1D78A" d={p1}></path>
                         <path clipPath="url(#SVGID_2_)" fill="#46A8C6" d={p2}></path>
                         <path clipPath="url(#SVGID_2_)" fill="#0F7BB6" d={p3}></path>
-                        <path clipPath="url(#SVGID_2_)" fill="#7FA9C8" d={p4}></path> */}
+                        <path clipPath="url(#SVGID_2_)" fill="#7FA9C8" d={p4}></path> 
                     </g>
                 </svg>
             </div>
